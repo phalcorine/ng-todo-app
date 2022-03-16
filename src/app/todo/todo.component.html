@@ -1,0 +1,18 @@
+<div class="todo-list">
+    <ul>
+        <li *ngFor="let todo of todos">
+            <p [ngClass]="{'completed': todo.completed}"
+             (click)="toggle(todo.id)">Title: {{todo.title}}. Is Completed: {{todo.completed}}.</p>
+            <button (click)="editTodo(todo.id)">Edit</button>
+            <button (click)="deleteTodo(todo.id)">Delete</button>
+        </li>
+    </ul>
+</div>
+
+<hr>
+
+<div class="todo-form">
+    <label>Title: </label>
+    <input type="text" placeholder="The title of the todo..." [(ngModel)]="newTodo" />
+    <button (click)="addTodo()">Add Todo</button>
+</div>

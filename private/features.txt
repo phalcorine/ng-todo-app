@@ -1,0 +1,12 @@
+Features:
+- View a list of Todo (done)
+- Add a Todo (done)
+- Delete a Todo (done)
+- Edit a Todo (done)
+- Toggle a todo completion status on or off with appropriate UI changes (strike-through)
+
+Todo:
+- title: string | not empty | minmum of 3 non-whitespace characters
+- completed: boolean
+- createdAt: Date | not empty
+- id: string | uniqueclea
