@@ -3,10 +3,28 @@ Features:
 - Add a Todo (done)
 - Delete a Todo (done)
 - Edit a Todo (done)
-- Toggle a todo completion status on or off with appropriate UI changes (strike-through)
+- Toggle a todo completion status on or off with appropriate UI changes (strike-through) (done)
+- Implement persistent storage for the todo list using Browser LocalStorage API (done)
+- Real-time count of Completed Todos and Total Todos
+- Sorting by certain metrics...
+
 
 Todo:
 - title: string | not empty | minmum of 3 non-whitespace characters
 - completed: boolean
 - createdAt: Date | not empty
 - id: string | uniqueclea
+
+What makes up a URL:
+
+http://localhost:4200/#/litigations/case-requests/make-approval/57
+
+// On Creating a new Todo:
+- Add the newly created todo to the todos array
+- Set the LocalStorage 'todos' key to the todos array
+
+// On Loading the Page:
+- Check LocalStorage for an exisiting list of todos
+- If there is an exisiting list:
+    - Parse the list into a list of todos
+    - Update the todos array with the newly parsed list of todos retrieved from the storage

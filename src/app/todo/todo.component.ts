@@ -10,15 +10,24 @@ export class TodoComponent implements OnInit {
 
   todos: Todo[] = [];
   newTodo: string = '';
+  completedTodosCount: number = 0;
 
   constructor() {
     console.log("Constructiong the component...");
   }
 
   ngOnInit(): void {
-    // for (const todo of this.todos) {
-    //   console.log(todo.title);
-    // }
+    // Initialization
+    let localTodos: Todo[] = [];
+
+    const expectedTodos = localStorage.getItem('todos');
+    if(expectedTodos != null) {
+      localTodos = JSON.parse(expectedTodos);
+    }
+
+    this.todos = localTodos;
+
+    this.calculateCompletedTodo();
   }
 
   addTodo() {
@@ -27,7 +36,19 @@ export class TodoComponent implements OnInit {
     if (newTodo == "" || newTodo.length < 3) {
       return;
     }
-    this.todos.push(new Todo(this.newTodo));
+    const todo = new Todo(this.newTodo);
+    this.todos.push(todo); // JSON
+    // console.log("\n Before Conversion Todo: ");
+    // console.log(todo);
+    // localStorage.setItem('todo', JSON.stringify(todo));
+
+    // const retrievedTodo = localStorage.getItem('todo');
+    // console.log("\n Just Retrieved...");
+    // console.log(retrievedTodo);
+    // const convertedTodo = JSON.parse(retrievedTodo!);
+    // console.log("\n After Conversion Todo: ");
+    // console.log(convertedTodo);
+    localStorage.setItem('todos', JSON.stringify(this.todos));
     this.newTodo = "";
   }
 
@@ -61,6 +82,18 @@ export class TodoComponent implements OnInit {
       return;
     }
     todo.completed = !todo.completed;
+    this.calculateCompletedTodo();
+  }
+
+  calculateCompletedTodo() {
+    let count = 0;
+    this.todos.forEach((todo) => {
+      if (todo.completed == true) {
+        count++;
+      }
+    });
+
+    this.completedTodosCount = count;
   }
 
 }

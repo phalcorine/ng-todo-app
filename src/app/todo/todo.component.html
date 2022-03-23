@@ -1,4 +1,10 @@
+<div style="padding-bottom: 30px;">
+    <h4 style="float: left;">Todo App</h4>
+    <p style="float: right; margin-top: 15px;"> {{completedTodosCount}} / {{todos.length}} </p>
+</div>
 <div class="todo-list">
+    
+    <br>
     <ul>
         <li *ngFor="let todo of todos">
             <p [ngClass]="{'completed': todo.completed}"
