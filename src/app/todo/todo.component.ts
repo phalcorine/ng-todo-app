@@ -15,6 +15,14 @@ export class TodoComponent implements OnInit {
   constructor() {
     console.log("Constructiong the component...");
   }
+  myOnclick(){
+    console.log("Clicked");
+     this.todos = [];
+     localStorage.removeItem("todos");
+     this.calculateCompletedTodo();
+
+    //  location.reload();
+  }
 
   ngOnInit(): void {
     // Initialization
@@ -97,3 +105,4 @@ export class TodoComponent implements OnInit {
   }
 
 }
+
